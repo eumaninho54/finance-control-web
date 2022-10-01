@@ -1,9 +1,15 @@
 import React from 'react';
+import { HeaderDashboard, TitleHeaderDashboard, WelcomeHeaderDashboard } from './styles';
 
 
 const Dashboard: React.FC = () => {
   return (
-    <div></div>
+    <>
+      <HeaderDashboard>
+        <WelcomeHeaderDashboard>Bem-vindo</WelcomeHeaderDashboard>
+        <TitleHeaderDashboard>Painel de controle</TitleHeaderDashboard>
+      </HeaderDashboard>
+    </>
   )
 }
 
