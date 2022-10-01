@@ -1,27 +1,37 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Main, BackgroundNav, ContentNav } from './styles';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Main, BackgroundNav, ContentNav, Nav, SelectedTab, SectionNav } from './styles';
+import { RiHome5Line } from 'react-icons/Ri';
+import { MdOutlineAppRegistration, MdOutlineQueryStats } from 'react-icons/Md'
 
-// import { Container } from './styles';
 
 interface NavBarProps {
   children: React.ReactNode
+  positionSelected: string
 }
 
-const NavBar: React.FC<NavBarProps> = ({ children }) => {
+const NavBar: React.FC<NavBarProps> = ({ children,  positionSelected}) => {
   const navigate = useNavigate()
+  const location = useLocation() as { pathname: string }
+
+  useEffect(() => {
+    console.log("a")
+  })
 
   return (
     <Main>
       <BackgroundNav>
-        <button onClick={() => navigate("/login")}>LOGIN</button>
-        <button onClick={() => navigate("/")}>HOME</button>
+        <SelectedTab positionSelected={positionSelected} />
+        <Nav>
+          <SectionNav onClick={() => navigate("/")}><RiHome5Line size={35} /></SectionNav>
+          <SectionNav onClick={() => navigate("/registration")}><MdOutlineAppRegistration size={35} /></SectionNav>
+          <SectionNav onClick={() => navigate("/stats")}><MdOutlineQueryStats size={35} /></SectionNav>
+        </Nav>
       </BackgroundNav>
 
       <ContentNav>
         {children}
       </ContentNav>
-      
     </Main>
   )
 }

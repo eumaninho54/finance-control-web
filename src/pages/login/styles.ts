@@ -26,4 +26,5 @@ export const ImageLogin = styled.img`
 
 export const TitleLogin = styled.h1`
   font-size: 28px;
+  color: #131313;
 `
