@@ -8,7 +8,6 @@ interface SelectedTabProps {
 
 export const Main = styled.main`
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: row;
 `
@@ -23,7 +22,7 @@ export const BackgroundNav = styled.section`
 `
 
 export const SelectedTab = styled.div`
-  background-color: ${theme.secundaryColor} ;
+  background-color: ${theme.primaryColor} ;
   width: 5px;
   height: 40px;
   margin-top: ${({positionSelected}: SelectedTabProps) => positionSelected };

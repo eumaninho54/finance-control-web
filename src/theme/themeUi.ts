@@ -6,6 +6,9 @@ export const themeUi = createTheme({
     primary: {
       main: theme.primaryColor,
     },
+    secondary: {
+      main: theme.secundaryColor
+    },
     action: { active: theme.primaryColor },
   },
 });
