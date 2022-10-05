@@ -7,8 +7,11 @@ export const themeUi = createTheme({
       main: theme.primaryColor,
     },
     secondary: {
-      main: theme.secundaryColor
+      main: theme.secundaryColor,
     },
     action: { active: theme.primaryColor },
+    mode: "dark",
+    
   },
+
 });
