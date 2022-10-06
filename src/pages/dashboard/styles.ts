@@ -5,6 +5,15 @@ interface CardValueProps {
   backgroundColor: string;
 }
 
+
+export const BackgroundDashboard = styled.main`
+  width: 100%; 
+  height: 100%; 
+  background-color: #e7e4e4; 
+  border-top-left-radius: 30px; 
+  border-bottom-left-radius: 30px;
+` 
+
 export const ContentDashboard = styled.main`
   display: flex;
   flex-direction: column;

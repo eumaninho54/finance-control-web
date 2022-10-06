@@ -18,7 +18,6 @@ export const BackgroundNav = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: start;
-  border-right: 3px solid #272727;
   background-color: ${() => theme.primaryColor};
 `
 
