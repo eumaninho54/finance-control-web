@@ -19,10 +19,11 @@ export const BackgroundNav = styled.section`
   flex-direction: row;
   justify-content: start;
   border-right: 3px solid #272727;
+  background-color: ${() => theme.primaryColor};
 `
 
 export const SelectedTab = styled.div`
-  background-color: ${theme.primaryColor} ;
+  background-color: #F5F9F6;
   width: 5px;
   height: 40px;
   margin-top: ${({positionSelected}: SelectedTabProps) => positionSelected };

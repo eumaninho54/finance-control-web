@@ -10,8 +10,6 @@ export const themeUi = createTheme({
       main: theme.secundaryColor,
     },
     action: { active: theme.primaryColor },
-    mode: "dark",
-    
-  },
-
+    mode: "light",
+  }
 });

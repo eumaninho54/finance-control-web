@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HeaderBgDashboard, TitleHeaderDashboard, WelcomeHeaderDashboard, InventoryBgDashboard, MainDashboard, HeaderContentDashboard, InventoryContentDashboard, CardDiv, InOutValue, CardTitle, CardValue, CardInfo, CardTexts, CardText, ContentDashboard, RightBarBgDashboard, RightBarContentDashboard, ContentTransaction, LetterTransaction, InfosTransaction, TextsTransaction } from './styles';
+import { HeaderBgDashboard, InventoryBgDashboard, MainDashboard, InventoryContentDashboard, CardDiv, InOutValue, CardTitle, CardValue, CardInfo, CardTexts, CardText, ContentDashboard, RightBarBgDashboard, RightBarContentDashboard, ContentTransaction, LetterTransaction, BoxValueTransaction } from './styles';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
@@ -20,15 +20,16 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
     <MainDashboard>
       <ContentDashboard>
         <HeaderBgDashboard>
-          <HeaderContentDashboard>
-            <WelcomeHeaderDashboard>Bem-vindo</WelcomeHeaderDashboard>
-            <TitleHeaderDashboard>Painel de controle</TitleHeaderDashboard>
-          </HeaderContentDashboard>
+          <div>
+            <h2>Bem-vindo</h2>
+            <h1>Painel de controle</h1>
+          </div>
         </HeaderBgDashboard>
+        
         <InventoryBgDashboard>
           <InventoryContentDashboard>
             <CardTitle>Orçamento</CardTitle>
-            <CardDiv backgroundColor='#3a3a3a'>
+            <CardDiv backgroundColor='#f5f5f5'>
               <CardTexts>
                 <CardText>Valor atual</CardText>
                 <CardValue>R$ 1.420,00</CardValue>
@@ -40,7 +41,7 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
             </CardDiv>
 
             <InOutValue>
-              <CardDiv backgroundColor='#5f2e2e'>
+              <CardDiv backgroundColor='#f8b6b6'>
                 <CardTexts>
                   <CardText>Ultima saída</CardText>
                   <CardValue>R$ -249,11</CardValue>
@@ -51,7 +52,7 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
                 <TrendingDownIcon />
               </CardDiv>
 
-              <CardDiv backgroundColor='#2e5f3a'>
+              <CardDiv backgroundColor='#b6f8c4'>
                 <CardTexts>
                   <CardText>Ultima entrada</CardText>
                   <CardValue>R$ +611,00</CardValue>
@@ -69,8 +70,8 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
       <RightBarBgDashboard>
         <RightBarContentDashboard>
           <TextField
-            style={{ marginBottom: 40 }}
-            label="TextField"
+            style={{ marginBottom: 40, fontSize: 11 }}
+            placeholder="Pesquise"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -79,71 +80,78 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
               )
             }} />
 
-          <ContentTransaction>
-            <InfosTransaction>
-              <LetterTransaction>
-                <span>A</span>
-              </LetterTransaction>
-
-              <TextsTransaction>
-                <h1>Angelo</h1>
-                <h2>Insumos</h2>
-              </TextsTransaction>
-            </InfosTransaction>
-          </ContentTransaction>
+          <CardTitle>Movimentações</CardTitle>
 
           <ContentTransaction>
-            <InfosTransaction>
-              <LetterTransaction>
+            <LetterTransaction>
+              <div>
                 <span>A</span>
-              </LetterTransaction>
+              </div>
+            </LetterTransaction>
+  
+            <h1>Angelo</h1>
 
-              <TextsTransaction>
-                <h1>Angelo</h1>
-                <h2>Insumos</h2>
-              </TextsTransaction>
-            </InfosTransaction>
+            <BoxValueTransaction>
+              <span>R$ 233.123.320,00</span>
+            </BoxValueTransaction>
           </ContentTransaction>
+
 
           <ContentTransaction>
-            <InfosTransaction>
-              <LetterTransaction>
+            <LetterTransaction>
+              <div>
                 <span>A</span>
-              </LetterTransaction>
+              </div>
+            </LetterTransaction>
 
-              <TextsTransaction>
-                <h1>Angelo</h1>
-                <h2>Insumos</h2>
-              </TextsTransaction>
-            </InfosTransaction>
+            <h1>Angelo</h1>
+
+            <BoxValueTransaction>
+              <span>R$ 1.320,00</span>
+            </BoxValueTransaction>
           </ContentTransaction>
+
 
           <ContentTransaction>
-            <InfosTransaction>
-              <LetterTransaction>
+            <LetterTransaction>
+              <div>
                 <span>A</span>
-              </LetterTransaction>
+              </div>
+            </LetterTransaction>
+            <h1>Angelo</h1>
 
-              <TextsTransaction>
-                <h1>Angelo</h1>
-                <h2>Insumos</h2>
-              </TextsTransaction>
-            </InfosTransaction>
+            <BoxValueTransaction>
+              <span>R$ 320,00</span>
+            </BoxValueTransaction>
           </ContentTransaction>
+
 
           <ContentTransaction>
-            <InfosTransaction>
-              <LetterTransaction>
+            <LetterTransaction>
+              <div>
                 <span>A</span>
-              </LetterTransaction>
+              </div>
+            </LetterTransaction>
+            <h1>Angelo</h1>
 
-              <TextsTransaction>
-                <h1>Angelo</h1>
-                <h2>Insumos</h2>
-              </TextsTransaction>
-            </InfosTransaction>
+            <BoxValueTransaction>
+              <span>R$ 320,00</span>
+            </BoxValueTransaction>
           </ContentTransaction>
 
+
+          <ContentTransaction>
+            <LetterTransaction>
+              <div>
+                <span>A</span>
+              </div>
+            </LetterTransaction>
+            <h1>Angelo</h1>
+
+            <BoxValueTransaction>
+              <span>R$ 320,00</span>
+            </BoxValueTransaction>
+          </ContentTransaction>
         </RightBarContentDashboard>
       </RightBarBgDashboard>
     </MainDashboard >
