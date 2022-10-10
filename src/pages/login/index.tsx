@@ -7,10 +7,6 @@ import Button from '@mui/material/Button';
 
 const Login: React.FC = () => {
 
-  useEffect(() => {
-    console.log("login")
-  }, [])
-
   return (
     <MainLogin>
       <BackgroundLogin>

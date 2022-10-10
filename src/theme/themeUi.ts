@@ -10,10 +10,8 @@ export const themeUi = createTheme({
       main: theme.secundaryColor,
     },
     action: { active: theme.primaryColor },
-    background: {default: "#ff1", paper: "#FF2"},
-    info: {main: "#ff2"},
     mode: "light",
     divider: '#000',
-    
+
   }
 });

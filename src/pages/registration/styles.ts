@@ -31,12 +31,13 @@ export const TabUser = styled.section`
   padding: 20px 0;
 `
 
-export const FormUser = styled.div`
+export const Form = styled.form`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 60%;
   height: 80px;
+  margin-top: 30px;
 `
 
 export const TabMovement = styled.section`
@@ -49,16 +50,12 @@ export const TabMovement = styled.section`
   height: 300px;
 `
 
-export const FormMovement = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 60%;
-  height: 80px;
-`
-
 export const TableGrid = styled.section`
   width: 90%;
   height: 371px;
   margin-top: 20px;
+`
+
+export const RemoveTable = styled.section`
+  width: 90%;
 `
