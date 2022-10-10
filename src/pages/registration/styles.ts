@@ -56,6 +56,8 @@ export const TableGrid = styled.section`
   margin-top: 20px;
 `
 
-export const RemoveTable = styled.section`
+export const ButtonsTable = styled.section`
   width: 90%;
+  margin-bottom: 30px;
+
 `

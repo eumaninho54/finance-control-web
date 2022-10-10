@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Form, MainRegistration, RemoveTable, SearchBox, TableGrid, TabMovement, TabUser } from './styles';
+import { Form, MainRegistration, ButtonsTable, SearchBox, TableGrid, TabMovement, TabUser } from './styles';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -19,7 +19,7 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
   const [test, setTest] = useState(0)
 
   const columnsTable: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'Nome', width: 160 },
     { field: 'input', headerName: 'Entrada', width: 110 },
     { field: 'output', headerName: 'Saida', width: 110 },
@@ -124,9 +124,9 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
         />
       </TableGrid>
 
-      <RemoveTable>
+      <ButtonsTable>
         <Button style={{ marginTop: 5 }} variant='outlined'>Remover</Button>
-      </RemoveTable>
+      </ButtonsTable>
     </MainRegistration>
   )
 }
