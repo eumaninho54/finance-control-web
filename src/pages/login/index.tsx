@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BackgroundLogin, ImageLogin, MainLogin, TitleLogin } from './styles';
 import TextField from '@mui/material/TextField';
 import userLogin from '../../assets/userLogin.svg'
@@ -6,6 +6,11 @@ import Button from '@mui/material/Button';
 
 
 const Login: React.FC = () => {
+
+  useEffect(() => {
+    console.log("login")
+  }, [])
+
   return (
     <MainLogin>
       <BackgroundLogin>

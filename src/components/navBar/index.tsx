@@ -15,7 +15,7 @@ const NavBar: React.FC<NavBarProps> = ({ children,  positionSelected}) => {
   const location = useLocation() as { pathname: string }
 
   useEffect(() => {
-    console.log("a")
+    console.log("b")
   })
 
   return (

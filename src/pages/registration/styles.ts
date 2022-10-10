@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+interface TabsProps {
+  tabSelected: number
+  index: number
+}
+
 
 export const MainRegistration = styled.div`
   width: 100%; 
@@ -13,12 +18,47 @@ export const MainRegistration = styled.div`
 `
 
 export const SearchBox = styled.section`
+  max-width: 1400px;
+  width: 90%;
+`
+
+export const TabUser = styled.section`
+  display: ${({tabSelected, index}: TabsProps) => tabSelected == index ? 'flex' : 'none'};
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
+`
+
+export const FormUser = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 60%;
+  height: 80px;
+`
+
+export const TabMovement = styled.section`
+  display: ${({tabSelected, index}: TabsProps) => tabSelected == index ? 'flex' : 'none'};
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
   height: 300px;
-  max-width: 1000px;
-  width: 80%;
+`
+
+export const FormMovement = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 60%;
+  height: 80px;
 `
 
 export const TableGrid = styled.section`
-  width: 80%;
-  height: 400px;
+  width: 90%;
+  height: 371px;
+  margin-top: 20px;
 `

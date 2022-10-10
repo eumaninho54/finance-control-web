@@ -29,6 +29,8 @@ export default () => {
           <Stats setPositionSelected={setPositionSelected}/>
         </NavBar>
       } />
+
+      <Route path="/login" element={<Login/>} />
     </Routes>
   )
 }
