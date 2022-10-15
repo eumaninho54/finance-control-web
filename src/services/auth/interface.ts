@@ -1,4 +1,4 @@
-export interface IVerifyToken {
+export interface IAuth {
   username: string;
   auth: boolean;
   token: string;

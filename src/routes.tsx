@@ -2,16 +2,16 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import NavBar from './components/navBar'
-import { StatesModel } from './store/admin/interfaces'
 import Dashboard from './pages/dashboard'
 import Login from './pages/login'
 import Registration from './pages/registration'
 import Stats from './pages/stats'
+import { useAppSelector } from './store/hooks/useAppSelector'
 
 export default () => {
   const location = useLocation()
   const [positionSelected, setPositionSelected] = useState('125px')
-  const admin = useSelector((state: StatesModel) => state.admin)
+  const admin = useAppSelector((store) => store.admin)
 
   return (
     admin.auth
@@ -31,6 +31,8 @@ export default () => {
             <NavBar positionSelected={positionSelected}>
               <Stats setPositionSelected={setPositionSelected} />
             </NavBar>} />
+
+          <Route path="*" element={ <Navigate to={"/"}/> }/>
         </Routes>
       )
       : (
