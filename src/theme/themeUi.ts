@@ -12,6 +12,7 @@ export const themeUi = createTheme({
     action: { active: theme.primaryColor },
     mode: "light",
     divider: '#000',
+    background: {default: theme.secundaryColor}
 
   }
 });

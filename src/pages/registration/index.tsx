@@ -8,6 +8,9 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import { useAppDispatch } from '../../store/hooks/useAppDispatch';
+import { createUser } from '../../store/users/thunks/createUser';
+import { useAppSelector } from '../../store/hooks/useAppSelector';
 
 
 interface RegistrationProps {
@@ -15,34 +18,29 @@ interface RegistrationProps {
 }
 
 const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
+  const useDispatch = useAppDispatch()
+  const users = useAppSelector((store) => store.users)
   const [tabSelected, setTabSelected] = useState(0);
   const [test, setTest] = useState(0)
+  const [newUsername, setNewUsername] = useState("")
+  const [newTotalValue, setNewTotalValue] = useState(0)
 
   const columnsTable: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'Nome', width: 160 },
-    { field: 'input', headerName: 'Entrada', width: 110 },
-    { field: 'output', headerName: 'Saida', width: 110 },
-    { field: 'last', headerName: 'Ultimo', width: 110 },
-    { field: 'reason', headerName: 'Motivo', width: 170 }
+    { field: 'input_value', headerName: 'Entrada', width: 110 },
+    { field: 'output_value', headerName: 'Saida', width: 110 },
+    { field: 'last_value', headerName: 'Ultimo', width: 110 },
+    { field: 'last_reason', headerName: 'Motivo', width: 170 }
   ]
 
-  // Still data static
-  const rowsTable = [
-    { id: 1, name: 'Angelo', input: '1200', output: '200', last: '-100', reason: 'Comprou uma motocicl' },
-    { id: 2, name: 'Angelo', input: '1000', output: '200', last: '-200', reason: 'Coffee :)' },
-    { id: 3, name: 'Angelo', input: '1000', output: '200', last: '-200', reason: 'Coffee :)' },
-    { id: 4, name: 'Angelo', input: '1000', output: '200', last: '-200', reason: 'Coffee :)' },
-    { id: 5, name: 'Angelo', input: '1000', output: '200', last: '-200', reason: 'Coffee :)' },
-    { id: 6, name: 'Angelo', input: '1000', output: '200', last: '-200', reason: 'Coffee :)' },
-    { id: 7, name: 'Angelo', input: '1000', output: '200', last: '-200', reason: 'Coffee :)' },
-    { id: 8, name: 'Angelo', input: '1000', output: '200', last: '-200', reason: 'Coffee :)' },
-    { id: 9, name: 'Angelo', input: '1000', output: '200', last: '-200', reason: 'Coffee :)' },
-    { id: 10, name: 'Angelo', input: '1000', output: '200', last: '-200', reason: 'Coffee :)' }
-  ]
+  const onAddUser = () => {
+    useDispatch(createUser({name: newUsername, total_money: newTotalValue}))
+  }
 
   useEffect(() => {
     setPositionSelected("185px")
+    console.log(users)
   }, [])
 
   return (
@@ -55,11 +53,23 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
 
         <TabUser tabSelected={tabSelected} index={0}>
           <Form>
-            <TextField style={{ marginBottom: 10 }} label="Nome" />
-            <TextField style={{ marginBottom: 10 }} label="Valor de entrada" />
+            <TextField 
+              style={{ marginBottom: 10 }} 
+              label="Nome" 
+              value={newUsername}
+              onChange={(event) => setNewUsername(event.target.value)}/>
+            <TextField 
+              type={"number"}
+              style={{ marginBottom: 10 }} 
+              label="Valor total" 
+              value={newTotalValue}
+              onChange={(event) => setNewTotalValue(Number(event.target.value))}/>
           </Form>
 
-          <Button style={{ marginTop: 5 }} variant='contained'>Adicionar</Button>
+          <Button 
+            onClick={() => onAddUser()}
+            style={{ marginTop: 5 }} 
+            variant='contained'>Adicionar</Button>
         </TabUser>
 
         <TabMovement tabSelected={tabSelected} index={1}>
@@ -114,7 +124,7 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
 
       <TableGrid>
         <DataGrid
-          rows={rowsTable}
+          rows={users}
           columns={columnsTable}
           pageSize={10}
           rowsPerPageOptions={[10]}

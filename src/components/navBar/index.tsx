@@ -14,10 +14,6 @@ const NavBar: React.FC<NavBarProps> = ({ children,  positionSelected}) => {
   const navigate = useNavigate()
   const location = useLocation() as { pathname: string }
 
-  useEffect(() => {
-    console.log("b")
-  })
-
   return (
     <Main>
       <BackgroundNav>

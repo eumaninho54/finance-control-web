@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { initialState } from "./initialState"
-import { adminAsyncBuilder } from "./thunks";
+import { usersAsyncBuilder } from "./thunks";
 
-const adminSlice = createSlice({
+const usersSlice = createSlice({
   name: "admin",
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
-    adminAsyncBuilder(builder)
+    usersAsyncBuilder(builder)
   }
 })
 
-export default adminSlice.reducer;
-export const {} = adminSlice.actions;
+export default usersSlice.reducer;
+export const {} = usersSlice.actions;

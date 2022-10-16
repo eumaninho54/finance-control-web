@@ -1,12 +1,13 @@
 import { ActionReducerMapBuilder, createAsyncThunk } from "@reduxjs/toolkit";
 import { AuthService } from "../../../services/auth";
+import { IAuthService } from "../../../services/auth/interface";
 import { initialState } from "../initialState";
 import { IAdmin } from "../interfaces";
 
 
-export const login = createAsyncThunk("login", async ({username, password}: {username: string, password: string}) => {
+export const login = createAsyncThunk("login", async ({username, password}: {username: string, password: string}): Promise<IAuthService | null> => {
 
-  const req = await new AuthService().login(username, password)
+  const req = await new AuthService().login({username, password})
 
   if(req != null){
     localStorage.setItem("token", req.token)
