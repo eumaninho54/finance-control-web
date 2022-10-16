@@ -7,21 +7,29 @@ import { themeUi } from './theme/themeUi'
 import { Provider } from 'react-redux'
 import { store } from './store'
 import { verifyToken } from './store/admin/thunks/verifyToken'
+import Loading from './components/loading'
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    store.dispatch(verifyToken())
+    const initial = async() => {
+      await store.dispatch(verifyToken())
+      setIsLoading(false)
+    }
+    initial()
   },[])
 
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={themeUi}>
-        <BrowserRouter>
-          <Routes />
-        </BrowserRouter>
-      </ThemeProvider>
-    </Provider>
+    isLoading == true
+    ? <Loading/>
+    : <Provider store={store}>
+        <ThemeProvider theme={themeUi}>
+          <BrowserRouter>
+            <Routes />
+          </BrowserRouter>
+        </ThemeProvider>
+      </Provider>
   )
 }
 
