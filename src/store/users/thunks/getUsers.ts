@@ -6,7 +6,7 @@ import { IUsersService } from "../../../services/users/interface";
 import { IUsers } from "../interfaces";
 
 
-export const createUser = createAsyncThunk("createUser", async ({name, total_money}: {name: string, total_money: number}): Promise<IUsersService[] | null> => {
+export const getUsers = createAsyncThunk("getUsers", async (): Promise<IUsersService[] | null> => {
   const token = localStorage.getItem("token")
 
   if(token == null) {
@@ -14,7 +14,7 @@ export const createUser = createAsyncThunk("createUser", async ({name, total_mon
     return null
   }
 
-  const req = await new UsersService(token).createUser({name, total_money})
+  const req = await new UsersService(token).getUsers()
 
   if(req == null){
     return req
@@ -23,16 +23,16 @@ export const createUser = createAsyncThunk("createUser", async ({name, total_mon
   return req
 })
 
-export const createUserBuilder = (builder: ActionReducerMapBuilder<IUsers[]>) => {
+export const getUsersBuilder = (builder: ActionReducerMapBuilder<IUsers[]>) => {
   builder
-    .addCase(createUser.fulfilled, (state, { payload }) => {
+    .addCase(getUsers.fulfilled, (state, { payload }) => {
       payload == null 
         ? state = initialState
         : state = payload
       return state
     })
-    .addCase(createUser.pending, (state, { payload }) => {})
-    .addCase(createUser.rejected, (state, { payload }) => {
+    .addCase(getUsers.pending, (state, { payload }) => {})
+    .addCase(getUsers.rejected, (state, { payload }) => {
       payload = initialState
       return state
     })

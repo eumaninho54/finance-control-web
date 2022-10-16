@@ -11,6 +11,7 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { useAppDispatch } from '../../store/hooks/useAppDispatch';
 import { createUser } from '../../store/users/thunks/createUser';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
+import { getUsers } from '../../store/users/thunks/getUsers';
 
 
 interface RegistrationProps {
@@ -40,7 +41,7 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
 
   useEffect(() => {
     setPositionSelected("185px")
-    console.log(users)
+    useDispatch(getUsers())
   }, [])
 
   return (

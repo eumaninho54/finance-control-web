@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createUserProps, getTableRegistrationProps, IUsersService } from "./interface";
+import { createUserProps, IUsersService } from "./interface";
 
 
 export class UsersService {
@@ -8,6 +8,17 @@ export class UsersService {
   constructor(
     private token?: string
   ){}
+
+  async getUsers(): Promise<IUsersService[] | null> {
+    const req = await axios.request<IUsersService[]>({
+      method: "get",
+      url: this.baseUrl + "/users",
+      headers: { "x-access-token": this.token }
+    }).then((res) => res.data)
+      .catch(() => null)
+
+    return req
+  }
 
   async createUser({name, total_money}: createUserProps): Promise<IUsersService[] | null> {
     const req = await axios.request<IUsersService[]>({
