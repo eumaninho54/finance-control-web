@@ -13,5 +13,9 @@ export interface IUsersService {
 
 export interface createUserProps {
   name: string;
-  total_money: number;
+  initialValue: number;
+}
+
+export interface deleteUsersProps{
+  id: number[]
 }

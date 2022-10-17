@@ -13,6 +13,7 @@ import { createUser } from '../../store/users/thunks/createUser';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 import { getUsers } from '../../store/users/thunks/getUsers';
 import { createTransaction } from '../../store/users/thunks/createTransaction';
+import { deleteUsers } from '../../store/users/thunks/deleteUsers';
 
 
 interface RegistrationProps {
@@ -24,10 +25,11 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
   const users = useAppSelector((store) => store.users)
   const [tabSelected, setTabSelected] = useState(0);
   const [newUsername, setNewUsername] = useState("")
-  const [newTotalValue, setNewTotalValue] = useState(0)
+  const [newInitialValue, setNewInitialValue] = useState(0)
   const [idUser, setIdUser] = useState(0)
   const [reason, setReason] = useState("")
   const [valueTransaction, setValueTransaction] = useState(0)
+  const [idsSelected, setIdsSelected] = useState<number[]>([])
 
   const columnsTable: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -39,7 +41,7 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
   ]
 
   const onAddUser = () => {
-    useDispatch(createUser({ name: newUsername, total_money: newTotalValue }))
+    useDispatch(createUser({ name: newUsername, initialValue: newInitialValue }))
   }
 
   const onAddTransaction = () => {
@@ -50,6 +52,10 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
         valueTransaction: valueTransaction
       }
     ))
+  }
+
+  const onDeleteUsers = () => {
+    useDispatch(deleteUsers({ id: idsSelected }))
   }
 
   const menuItems = () => {
@@ -83,9 +89,9 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
             <TextField
               type={"number"}
               style={{ marginBottom: 10 }}
-              label="Valor total"
-              value={newTotalValue}
-              onChange={(event) => setNewTotalValue(Number(event.target.value))} />
+              label="Valor inicial"
+              value={newInitialValue}
+              onChange={(event) => setNewInitialValue(Number(event.target.value))} />
           </Form>
 
           <Button
@@ -103,7 +109,7 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
               onChange={(event) => setIdUser(Number(event.target.value))}
               MenuProps={{ PaperProps: { style: { maxHeight: 300 } } }}
               input={<OutlinedInput label="Nome do usuario" />}
-              renderValue={(value) => value == 0 
+              renderValue={(value) => value == 0
                 ? "Nome do usuario"
                 : users.find((user) => (user.id) == value)?.name}
             >
@@ -153,11 +159,21 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
           checkboxSelection
           disableColumnMenu
           style={{ backgroundColor: "#dddddd" }}
+          onSelectionModelChange={(rows) => {
+            let arrayIds: number[] = []
+            rows.map((id) => arrayIds.push(Number(id)))
+            setIdsSelected(arrayIds)
+          }}
         />
       </TableGrid>
 
       <ButtonsTable>
-        <Button style={{ marginTop: 5 }} variant='outlined'>Remover</Button>
+        <Button
+          onClick={() => onDeleteUsers()}
+          style={{ marginTop: 5 }}
+          variant='outlined'>
+          Remover
+        </Button>
       </ButtonsTable>
     </MainRegistration>
   )

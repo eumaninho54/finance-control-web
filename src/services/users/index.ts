@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createUserProps, IUsersService } from "./interface";
+import { createUserProps, deleteUsersProps, IUsersService } from "./interface";
 
 
 export class UsersService {
@@ -20,19 +20,33 @@ export class UsersService {
     return req
   }
 
-  async createUser({name, total_money}: createUserProps): Promise<IUsersService[] | null> {
+  async createUser({name, initialValue}: createUserProps): Promise<IUsersService[] | null> {
     const req = await axios.request<IUsersService[]>({
       method: "post",
       url: this.baseUrl + "/users/new",
       headers: { "x-access-token": this.token },
       data: {
         name: name,
-        total_money: total_money
+        initialValue: initialValue
       }
     }).then((res) => res.data)
       .catch(() => null)
 
     return req
   } 
+
+  async deleteUsers({id}: deleteUsersProps): Promise<IUsersService[] | null>{
+    const req = await axios.request<IUsersService[]>({
+      method: "post",
+      url: this.baseUrl + "/users/delete",
+      headers: { "x-access-token": this.token },
+      data: {
+        id: id
+      }
+    }).then((res) => res.data)
+      .catch(() => null)
+
+    return req
+  }
 }
 

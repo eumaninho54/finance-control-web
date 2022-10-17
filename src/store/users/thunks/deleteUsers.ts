@@ -6,7 +6,7 @@ import { IUsersService } from "../../../services/users/interface";
 import { IUsers } from "../interfaces";
 
 
-export const createUser = createAsyncThunk("createUser", async ({name, initialValue}: {name: string, initialValue: number}): Promise<IUsersService[] | null> => {
+export const deleteUsers = createAsyncThunk("deleteUsers", async ({id}: {id: number[]}): Promise<IUsersService[] | null> => {
   const token = localStorage.getItem("token")
 
   if(token == null) {
@@ -14,27 +14,25 @@ export const createUser = createAsyncThunk("createUser", async ({name, initialVa
     return null
   }
 
-  const req = await new UsersService(token).createUser({name, initialValue})
+  const req = await new UsersService(token).deleteUsers({id})
 
   if(req == null){
     return req
   }
 
-  console.log(req)
-
   return req
 })
 
-export const createUserBuilder = (builder: ActionReducerMapBuilder<IUsers[]>) => {
+export const deleteUsersBuilder = (builder: ActionReducerMapBuilder<IUsers[]>) => {
   builder
-    .addCase(createUser.fulfilled, (state, { payload }) => {
+    .addCase(deleteUsers.fulfilled, (state, { payload }) => {
       payload == null 
         ? state = initialState
         : state = payload
       return state
     })
-    .addCase(createUser.pending, (state, { payload }) => {})
-    .addCase(createUser.rejected, (state, { payload }) => {
+    .addCase(deleteUsers.pending, (state, { payload }) => {})
+    .addCase(deleteUsers.rejected, (state, { payload }) => {
       payload = initialState
       return state
     })
