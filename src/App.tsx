@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import { store } from './store'
 import { verifyToken } from './store/admin/thunks/verifyToken'
 import Loading from './components/loading'
+import { getUsers } from './store/users/thunks/getUsers'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -15,6 +16,7 @@ function App() {
   useEffect(() => {
     const initial = async() => {
       await store.dispatch(verifyToken())
+      await store.dispatch(getUsers())
       setIsLoading(false)
     }
     initial()

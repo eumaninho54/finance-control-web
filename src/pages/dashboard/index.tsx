@@ -6,15 +6,38 @@ import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { useAppDispatch } from '../../store/hooks/useAppDispatch';
+import { useAppSelector } from '../../store/hooks/useAppSelector';
+import { getUsers } from '../../store/users/thunks/getUsers';
+import currency from 'currency.js';
 
 interface DashboardProps {
   setPositionSelected: React.Dispatch<React.SetStateAction<string>>
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
+  const useDispatch = useAppDispatch()
+  const users = useAppSelector((store) => store.users)
+
+
+ 
+
+  const totalValue = () => {
+    return String(currency(users.map(user => user.total_money).reduce((prev, curr) => prev + curr, 0), {decimal: ',', separator: ".", symbol: "R$" }).format())
+  }
+
+  const lastOutput = () => {
+    return String(currency(users.map(user => user.output_value).reduce((prev, curr) => prev + curr, 0), {decimal: ',', separator: ".", symbol: "R$" }).format())
+  }
+
+  const lastInput = () => {
+    return String(currency(users.map(user => user.input_value).reduce((prev, curr) => prev + curr, 0), {decimal: ',', separator: ".", symbol: "R$" }).format())
+  }
+
   useEffect(() => {
     setPositionSelected("125px")
   }, [])
+
 
   return (
     <BackgroundDashboard>
@@ -33,7 +56,7 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
               <CardDiv backgroundColor='#f5f5f5'>
                 <CardTexts>
                   <CardText>Valor atual</CardText>
-                  <CardValue>R$ 1.420,00</CardValue>
+                  <CardValue>{totalValue()}</CardValue>
                 </CardTexts>
 
                 <Fab color="secondary" size='medium' aria-label="add">
@@ -45,7 +68,7 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
                 <CardDiv backgroundColor='#f8b6b6'>
                   <CardTexts>
                     <CardText>Ultima saída</CardText>
-                    <CardValue>R$ -249,11</CardValue>
+                    <CardValue>{lastOutput()}</CardValue>
                     <CardInfo>Usuario: Angelo Menti</CardInfo>
                     <CardInfo>Data: 06/10/2022</CardInfo>
                   </CardTexts>
@@ -56,7 +79,7 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
                 <CardDiv backgroundColor='#b6f8c4'>
                   <CardTexts>
                     <CardText>Ultima entrada</CardText>
-                    <CardValue>R$ +611,00</CardValue>
+                    <CardValue>+{lastInput()}</CardValue>
                     <CardInfo>Usuario: Angelo Menti</CardInfo>
                     <CardInfo>Data: 06/10/2022</CardInfo>
                   </CardTexts>
