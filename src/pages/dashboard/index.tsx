@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BackgroundDashboard, MainDashboard, HeaderBgDashboard, InventoryBgDashboard, InventoryContentDashboard, CardDiv, InOutValue, CardTitle, CardValue, CardInfo, CardTexts, CardText, ContentDashboard, RightBarBgDashboard, RightBarContentDashboard, ContentTransaction, LetterTransaction, BoxValueTransaction } from './styles';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
@@ -9,7 +9,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useAppDispatch } from '../../store/hooks/useAppDispatch';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 import { getUsers } from '../../store/users/thunks/getUsers';
-import currency from 'currency.js';
+import { currencyjs } from '../../config/currencyjs';
+import { TransactionService } from '../../services/transaction';
+import { ILastInputOutput } from '../../services/transaction/interface';
 
 interface DashboardProps {
   setPositionSelected: React.Dispatch<React.SetStateAction<string>>
@@ -17,24 +19,26 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
   const useDispatch = useAppDispatch()
+  const admin = useAppSelector((store) => store.admin)
   const users = useAppSelector((store) => store.users)
-
-
- 
+  const [lastInputOutput, setLastInputOutput] = useState<ILastInputOutput>({
+    input: 0,
+    output: 0
+  })
 
   const totalValue = () => {
-    return String(currency(users.map(user => user.total_money).reduce((prev, curr) => prev + curr, 0), {decimal: ',', separator: ".", symbol: "R$" }).format())
-  }
-
-  const lastOutput = () => {
-    return String(currency(users.map(user => user.output_value).reduce((prev, curr) => prev + curr, 0), {decimal: ',', separator: ".", symbol: "R$" }).format())
-  }
-
-  const lastInput = () => {
-    return String(currency(users.map(user => user.input_value).reduce((prev, curr) => prev + curr, 0), {decimal: ',', separator: ".", symbol: "R$" }).format())
+    return String(currencyjs(users.map(user => user.total_money).reduce((prev, curr) => prev + curr, 0)))
   }
 
   useEffect(() => {
+    const initial = async() => {
+      const reqLastInputOutput = await new TransactionService(admin.token).lastInputOutput()
+      reqLastInputOutput == null
+      ? null
+      : setLastInputOutput(reqLastInputOutput)
+
+    }
+    initial()
     setPositionSelected("125px")
   }, [])
 
@@ -68,7 +72,7 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
                 <CardDiv backgroundColor='#f8b6b6'>
                   <CardTexts>
                     <CardText>Ultima saída</CardText>
-                    <CardValue>{lastOutput()}</CardValue>
+                    <CardValue>{currencyjs(lastInputOutput.output)}</CardValue>
                     <CardInfo>Usuario: Angelo Menti</CardInfo>
                     <CardInfo>Data: 06/10/2022</CardInfo>
                   </CardTexts>
@@ -79,7 +83,7 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
                 <CardDiv backgroundColor='#b6f8c4'>
                   <CardTexts>
                     <CardText>Ultima entrada</CardText>
-                    <CardValue>+{lastInput()}</CardValue>
+                    <CardValue>{currencyjs(lastInputOutput.input)}</CardValue>
                     <CardInfo>Usuario: Angelo Menti</CardInfo>
                     <CardInfo>Data: 06/10/2022</CardInfo>
                   </CardTexts>

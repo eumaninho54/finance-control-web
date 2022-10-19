@@ -1,6 +1,6 @@
 
 
-export interface ITransactionsService {
+export interface ICreateTransaction {
   id: number;
   name: string;
   input_value: number,
@@ -9,6 +9,11 @@ export interface ITransactionsService {
   last_reason: string;
   total_money: number,
   transactions: any[]
+}
+
+export interface ILastInputOutput {
+  input: number;
+  output: number;
 }
 
 export interface createTransactionProps {

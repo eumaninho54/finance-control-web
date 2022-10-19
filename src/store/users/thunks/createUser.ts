@@ -20,8 +20,6 @@ export const createUser = createAsyncThunk("createUser", async ({name, initialVa
     return req
   }
 
-  console.log(req)
-
   return req
 })
 

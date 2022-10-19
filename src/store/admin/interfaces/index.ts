@@ -1,6 +1,6 @@
 export interface IAdmin {
   username: string
   auth: boolean
-  token: string | null
+  token: string
   loading: boolean
 }
