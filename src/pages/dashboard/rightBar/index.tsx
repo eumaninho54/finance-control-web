@@ -37,14 +37,15 @@ const RightBar: React.FC = () => {
 
   useEffect(() => {
     const initial = async () => {
-      const reqTransactions = await new TransactionService(admin.token).getTransactions()
+      const reqTransactions = await new TransactionService(admin.token).getTransactions({
+        textFilter: filterTransactions
+      })
       reqTransactions == null
         ? setLastTransactions([])
         : setLastTransactions(reqTransactions)
-
     }
     initial()
-  }, [])
+  }, [filterTransactions])
 
   return (
     <RightBarBg>

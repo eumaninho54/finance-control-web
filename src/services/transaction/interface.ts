@@ -24,6 +24,10 @@ export interface IGetTransactions {
   release_date: Date;
 }
 
+export interface getTransactionsProps {
+  textFilter: string;
+}
+
 export interface createTransactionProps {
   id: number;
   reason: string
