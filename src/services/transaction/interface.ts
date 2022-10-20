@@ -16,6 +16,14 @@ export interface ILastInputOutput {
   output: number;
 }
 
+export interface IGetTransactions {
+  id: number;
+  name: string;
+  reason: string;
+  value: string;
+  release_date: Date;
+}
+
 export interface createTransactionProps {
   id: number;
   reason: string

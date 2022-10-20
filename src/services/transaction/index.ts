@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createTransactionProps, ILastInputOutput, ICreateTransaction } from "./interface";
+import { createTransactionProps, ILastInputOutput, ICreateTransaction, IGetTransactions } from "./interface";
 
 
 export class TransactionService {
@@ -8,6 +8,17 @@ export class TransactionService {
   constructor(
     private token?: string
   ){}
+  
+  async getTransactions(): Promise<IGetTransactions[] | null> {
+    const req = await axios.request<IGetTransactions[]>({
+      method: "get",
+      url: this.baseUrl + "/transactions/",
+      headers: { "x-access-token": this.token }
+    }).then((res) => res.data)
+      .catch(() => null)
+
+    return req
+  }
 
   async lastInputOutput(): Promise<ILastInputOutput | null> {
     const req = await axios.request<ILastInputOutput>({

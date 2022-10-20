@@ -6,7 +6,7 @@ interface CardValueProps {
 }
 
 
-export const BackgroundDashboard = styled.main`
+export const Background = styled.main`
   width: 100%; 
   height: 100%; 
   background-color: #e7e4e4; 
@@ -14,15 +14,7 @@ export const BackgroundDashboard = styled.main`
   border-bottom-left-radius: 30px;
 ` 
 
-export const ContentDashboard = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  align-items: center;
-  margin: 0px 35px;
-`;
-
-export const MainDashboard = styled.section`
+export const Main = styled.section`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -30,7 +22,15 @@ export const MainDashboard = styled.section`
   margin-right: 320px;
 `;
 
-export const HeaderBgDashboard = styled.header`
+export const Content = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  margin: 0px 35px;
+`;
+
+export const HeaderBg = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,7 +68,7 @@ export const HeaderBgDashboard = styled.header`
 `;
 
 //Inventory Section
-export const InventoryBgDashboard = styled.section`
+export const InventoryBg = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,7 +78,7 @@ export const InventoryBgDashboard = styled.section`
   left: 0;
 `;
 
-export const InventoryContentDashboard = styled.div`
+export const InventoryContent = styled.div`
   width: 100%;
   max-width: 700px;
   border-radius: 8px;
@@ -138,86 +138,3 @@ export const CardValue = styled.span`
 export const CardInfo = styled.span`
   margin-top: 6px;
 `;
-
-//RightBar Section
-export const RightBarBgDashboard = styled.section`
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  background-color: #f0f0f0;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-  right: 0;
-  top: 0;
-  width: 320px;
-  height: 100vh;
-`;
-
-export const RightBarContentDashboard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  padding: 50px 0px;
-`
-
-export const ContentTransaction = styled.section`
-  width: 270px;
-  height: 60px;
-  border-radius: 10px;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: white;
-
-  h1{
-    width: 40%;
-    font-size: 20px;
-    margin: 0;
-    word-wrap: break-word;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-  }
-`
-
-export const BoxValueTransaction = styled.div`
-  width: 35%;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  
-  span {
-    font-weight: bold;
-  }
-`
-
-export const LetterTransaction = styled.div`
-  width: 25%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-
-  div {
-    background-color: ${() => theme.primaryColor};
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  span{
-    font-size: 25px;
-    margin: 0;
-    color: white;
-  }
-`
-

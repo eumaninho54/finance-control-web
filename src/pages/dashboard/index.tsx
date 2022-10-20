@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BackgroundDashboard, MainDashboard, HeaderBgDashboard, InventoryBgDashboard, InventoryContentDashboard, CardDiv, InOutValue, CardTitle, CardValue, CardInfo, CardTexts, CardText, ContentDashboard, RightBarBgDashboard, RightBarContentDashboard, ContentTransaction, LetterTransaction, BoxValueTransaction } from './styles';
+import { Background, Main, HeaderBg, InventoryBg, InventoryContent, CardDiv, InOutValue, CardTitle, CardValue, CardInfo, CardTexts, CardText, Content} from './styles';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
@@ -12,6 +12,7 @@ import { getUsers } from '../../store/users/thunks/getUsers';
 import { currencyjs } from '../../config/currencyjs';
 import { TransactionService } from '../../services/transaction';
 import { ILastInputOutput } from '../../services/transaction/interface';
+import RightBar from './rightBar';
 
 interface DashboardProps {
   setPositionSelected: React.Dispatch<React.SetStateAction<string>>
@@ -44,18 +45,18 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
 
 
   return (
-    <BackgroundDashboard>
-      <MainDashboard>
-        <ContentDashboard>
-          <HeaderBgDashboard>
+    <Background>
+      <Main>
+        <Content>
+          <HeaderBg>
             <div>
               <h2>Bem-vindo</h2>
               <h1>Painel de controle</h1>
             </div>
-          </HeaderBgDashboard>
+          </HeaderBg>
 
-          <InventoryBgDashboard>
-            <InventoryContentDashboard>
+          <InventoryBg>
+            <InventoryContent>
               <CardTitle>Orçamento</CardTitle>
               <CardDiv backgroundColor='#f5f5f5'>
                 <CardTexts>
@@ -91,99 +92,13 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
                   <TrendingUpIcon />
                 </CardDiv>
               </InOutValue>
-            </InventoryContentDashboard>
-          </InventoryBgDashboard>
-        </ContentDashboard>
+            </InventoryContent>
+          </InventoryBg>
+        </Content>
 
-        <RightBarBgDashboard>
-          <RightBarContentDashboard>
-            <TextField
-              style={{ marginBottom: 40, fontSize: 11 }}
-              placeholder="Pesquise"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                )
-              }} />
-
-            <CardTitle>Movimentações</CardTitle>
-
-            <ContentTransaction>
-              <LetterTransaction>
-                <div>
-                  <span>A</span>
-                </div>
-              </LetterTransaction>
-
-              <h1>Angelo</h1>
-
-              <BoxValueTransaction>
-                <span>R$ 233.123.320,00</span>
-              </BoxValueTransaction>
-            </ContentTransaction>
-
-
-            <ContentTransaction>
-              <LetterTransaction>
-                <div>
-                  <span>A</span>
-                </div>
-              </LetterTransaction>
-
-              <h1>Angelo</h1>
-
-              <BoxValueTransaction>
-                <span>R$ 1.320,00</span>
-              </BoxValueTransaction>
-            </ContentTransaction>
-
-
-            <ContentTransaction>
-              <LetterTransaction>
-                <div>
-                  <span>A</span>
-                </div>
-              </LetterTransaction>
-              <h1>Angelo</h1>
-
-              <BoxValueTransaction>
-                <span>R$ 320,00</span>
-              </BoxValueTransaction>
-            </ContentTransaction>
-
-
-            <ContentTransaction>
-              <LetterTransaction>
-                <div>
-                  <span>A</span>
-                </div>
-              </LetterTransaction>
-              <h1>Angelo</h1>
-
-              <BoxValueTransaction>
-                <span>R$ 320,00</span>
-              </BoxValueTransaction>
-            </ContentTransaction>
-
-
-            <ContentTransaction>
-              <LetterTransaction>
-                <div>
-                  <span>A</span>
-                </div>
-              </LetterTransaction>
-              <h1>Angelo</h1>
-
-              <BoxValueTransaction>
-                <span>R$ 320,00</span>
-              </BoxValueTransaction>
-            </ContentTransaction>
-          </RightBarContentDashboard>
-        </RightBarBgDashboard>
-      </MainDashboard >
-    </BackgroundDashboard>
+        <RightBar/>
+      </Main >
+    </Background>
   )
 }
 
