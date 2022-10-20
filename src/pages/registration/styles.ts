@@ -35,9 +35,15 @@ export const Form = styled.form`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  min-width: 280px;
   width: 60%;
   height: 80px;
   margin-top: 30px;
+
+  @media (max-width: 785px) {
+    flex-direction: column;
+    height: auto;
+  }
 `
 
 export const TabMovement = styled.section`

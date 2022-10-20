@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { TransactionService } from '../../../services/transaction';
 import { useAppSelector } from '../../../store/hooks/useAppSelector';
 import { IGetTransactions } from '../../../services/transaction/interface';
+import { currencyjs } from '../../../utils/currencyjs';
 
 
 const RightBar: React.FC = () => {
@@ -28,7 +29,7 @@ const RightBar: React.FC = () => {
           </BoxText>
 
           <BoxValueTransaction>
-            <span>R$ {transaction.value}</span>
+            <span>{String(currencyjs(transaction.value))}</span>
           </BoxValueTransaction>
         </ContentTransaction>
       )

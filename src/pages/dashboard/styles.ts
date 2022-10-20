@@ -20,6 +20,10 @@ export const Main = styled.section`
   align-items: center;
   justify-content: center;
   margin-right: 320px;
+
+  @media (max-width: 785px) {
+    margin-right: 0px;
+  }
 `;
 
 export const Content = styled.main`
@@ -28,6 +32,7 @@ export const Content = styled.main`
   justify-content: left;
   align-items: center;
   margin: 0px 35px;
+
 `;
 
 export const HeaderBg = styled.header`
@@ -58,7 +63,7 @@ export const HeaderBg = styled.header`
     margin-bottom: 10px;
   }
 
-  @media (max-width: 840px) {
+  @media (max-width: 1060px) {
     align-items: flex-start;
 
     div{
@@ -94,7 +99,7 @@ export const InOutValue = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 840px) {
+  @media (max-width: 1060px) {
     flex-direction: column;
   }
 `;
@@ -105,20 +110,41 @@ export const CardTitle = styled.h1`
 `;
 
 export const CardDiv = styled.section`
-  min-width: 270px;
+  width: 230px;
   height: 150px;
   background-color: ${(props: CardValueProps) => props.backgroundColor};
   margin: 15px;
+  padding: 10px 20px;
   border-radius: 8px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+
+  @media (max-width: 785px) {
+    max-width: 200px;
+    width: 100%;
+  }
 `;
 
 export const CardTexts = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  span {
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media (max-width: 785px) {
+    margin-right: 10px;
+  }
 `;
 
 export const CardText = styled.h1`

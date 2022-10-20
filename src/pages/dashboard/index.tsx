@@ -9,10 +9,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useAppDispatch } from '../../store/hooks/useAppDispatch';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
 import { getUsers } from '../../store/users/thunks/getUsers';
-import { currencyjs } from '../../config/currencyjs';
+import { currencyjs } from '../../utils/currencyjs';
 import { TransactionService } from '../../services/transaction';
 import { ILastInputOutput } from '../../services/transaction/interface';
 import RightBar from './rightBar';
+import { formatDate } from '../../utils/formatDate';
 
 interface DashboardProps {
   setPositionSelected: React.Dispatch<React.SetStateAction<string>>
@@ -23,8 +24,16 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
   const admin = useAppSelector((store) => store.admin)
   const users = useAppSelector((store) => store.users)
   const [lastInputOutput, setLastInputOutput] = useState<ILastInputOutput>({
-    input: 0,
-    output: 0
+    input: {
+      user: '',
+      value: 0,
+      release_date: new Date()
+    },
+    output: {
+      user: '',
+      value: 0,
+      release_date: new Date()
+    }
   })
 
   const totalValue = () => {
@@ -64,7 +73,7 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
                   <CardValue>{totalValue()}</CardValue>
                 </CardTexts>
 
-                <Fab color="secondary" size='medium' aria-label="add">
+                <Fab style={{flexShrink: 0}} color="secondary" size='medium' aria-label="add">
                   <AddIcon color='primary' />
                 </Fab>
               </CardDiv>
@@ -73,9 +82,9 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
                 <CardDiv backgroundColor='#f8b6b6'>
                   <CardTexts>
                     <CardText>Ultima saída</CardText>
-                    <CardValue>{currencyjs(lastInputOutput.output)}</CardValue>
-                    <CardInfo>Usuario: Angelo Menti</CardInfo>
-                    <CardInfo>Data: 06/10/2022</CardInfo>
+                    <CardValue>{currencyjs(lastInputOutput.output['value'])}</CardValue>
+                    <CardInfo>Usuario: {lastInputOutput.output['user']}</CardInfo>
+                    <CardInfo>Data: {formatDate(lastInputOutput.output['release_date'])}</CardInfo>
                   </CardTexts>
 
                   <TrendingDownIcon />
@@ -84,9 +93,9 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
                 <CardDiv backgroundColor='#b6f8c4'>
                   <CardTexts>
                     <CardText>Ultima entrada</CardText>
-                    <CardValue>{currencyjs(lastInputOutput.input)}</CardValue>
-                    <CardInfo>Usuario: Angelo Menti</CardInfo>
-                    <CardInfo>Data: 06/10/2022</CardInfo>
+                    <CardValue>{currencyjs(lastInputOutput.input['value'])}</CardValue>
+                    <CardInfo>Usuario: {lastInputOutput.output['user']}</CardInfo>
+                    <CardInfo>Data: {formatDate(lastInputOutput.output['release_date'])}</CardInfo>
                   </CardTexts>
 
                   <TrendingUpIcon />

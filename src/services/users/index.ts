@@ -6,7 +6,7 @@ export class UsersService {
   private baseUrl: string = "http://192.168.1.108:3333"
 
   constructor(
-    private token?: string
+    private token: string
   ){}
 
   async getUsers(): Promise<IUsersService[] | null> {

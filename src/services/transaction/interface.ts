@@ -12,15 +12,23 @@ export interface ICreateTransaction {
 }
 
 export interface ILastInputOutput {
-  input: number;
-  output: number;
+  input: {
+    user: string;
+    value: number;
+    release_date: Date;
+  },
+  output: {
+    user: string;
+    value: number;
+    release_date: Date;
+  }
 }
 
 export interface IGetTransactions {
   id: number;
   name: string;
   reason: string;
-  value: string;
+  value: number;
   release_date: Date;
 }
 

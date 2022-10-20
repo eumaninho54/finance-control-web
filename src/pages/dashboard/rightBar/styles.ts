@@ -91,6 +91,7 @@ export const LetterTransaction = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  margin-left: 5px;
 
   div {
     background-color: ${() => theme.primaryColor};
