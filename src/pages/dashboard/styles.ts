@@ -61,7 +61,7 @@ export const HeaderBg = styled.header`
     margin-bottom: 10px;
   }
 
-  @media (max-width: 1060px) {
+  @media (max-width: 1090px) {
     align-items: flex-start;
 
     div {
@@ -97,7 +97,7 @@ export const InOutValue = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 1060px) {
+  @media (max-width: 1090px) {
     flex-direction: column;
   }
 `;
