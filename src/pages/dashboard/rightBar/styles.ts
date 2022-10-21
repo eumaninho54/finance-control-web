@@ -4,14 +4,11 @@ import { theme } from "../../../theme";
 
 
 export const RightBarBg = styled.section`
-  position: fixed;
   display: flex;
   justify-content: center;
   background-color: #f0f0f0;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
-  right: 0;
-  top: 0;
   width: 320px;
   height: 100vh;
 `;

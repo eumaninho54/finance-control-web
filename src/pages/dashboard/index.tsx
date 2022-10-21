@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Background, Main, HeaderBg, InventoryBg, InventoryContent, CardDiv, InOutValue, CardTitle, CardValue, CardInfo, CardTexts, CardText, Content} from './styles';
+import { Background, Main, HeaderBg, InventoryBg, InventoryContent, CardDiv, InOutValue, CardTitle, CardValue, CardInfo, CardTexts, CardText, Content, ContainerFixedRight } from './styles';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
@@ -41,15 +41,15 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
   }
 
   useEffect(() => {
-    const initial = async() => {
+    const initial = async () => {
       const reqLastInputOutput = await new TransactionService(admin.token).lastInputOutput()
       reqLastInputOutput == null
-      ? null
-      : setLastInputOutput(reqLastInputOutput)
+        ? null
+        : setLastInputOutput(reqLastInputOutput)
 
     }
     initial()
-    setPositionSelected("125px")
+    setPositionSelected("185px")
   }, [])
 
 
@@ -73,7 +73,7 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
                   <CardValue>{totalValue()}</CardValue>
                 </CardTexts>
 
-                <Fab style={{flexShrink: 0}} color="secondary" size='medium' aria-label="add">
+                <Fab style={{ flexShrink: 0 }} color="secondary" size='medium' aria-label="add">
                   <AddIcon color='primary' />
                 </Fab>
               </CardDiv>
@@ -105,7 +105,9 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
           </InventoryBg>
         </Content>
 
-        <RightBar/>
+        <ContainerFixedRight>
+          <RightBar />
+        </ContainerFixedRight>
       </Main >
     </Background>
   )

@@ -8,7 +8,7 @@ interface StatsProps {
 
 const Stats: React.FC<StatsProps> = ({ setPositionSelected }) => {
   useEffect(() => {
-    setPositionSelected("245px")
+    setPositionSelected("305px")
   }, [])
   
   return <div />;

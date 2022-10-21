@@ -5,6 +5,10 @@ interface SelectedTabProps {
   positionSelected: string
 }
 
+interface SectionNavProps {
+  isMenuMobile?: boolean
+}
+
 
 export const Main = styled.main`
   width: 100%;
@@ -35,7 +39,7 @@ export const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 110px;
+  margin-top: 90px;
 `
 
 export const SectionNav = styled.a`
@@ -49,8 +53,19 @@ export const SectionNav = styled.a`
   align-items: center;
   cursor: pointer;
   margin-top: 10px;
+  margin-bottom: ${({isMenuMobile}: SectionNavProps) => isMenuMobile ? '20px' : '0px' };
+  visibility: ${({isMenuMobile}: SectionNavProps) => isMenuMobile ? 'hidden' : 'visible' };
+
+  @media (max-width: 785px) {
+    visibility: ${({isMenuMobile}: SectionNavProps) => isMenuMobile ? 'visible' : 'visible' };
+  }
 `
 
 export const ContentNav = styled.section`
   width: 100%;
 `
+
+
+/* @media (max-width: 785px) {
+    display: none;
+  }*/

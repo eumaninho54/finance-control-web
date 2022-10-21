@@ -5,14 +5,13 @@ interface CardValueProps {
   backgroundColor: string;
 }
 
-
 export const Background = styled.main`
-  width: 100%; 
-  height: 100%; 
-  background-color: #e7e4e4; 
-  border-top-left-radius: 30px; 
+  width: 100%;
+  height: 100%;
+  background-color: #e7e4e4;
+  border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
-` 
+`;
 
 export const Main = styled.section`
   display: flex;
@@ -32,7 +31,6 @@ export const Content = styled.main`
   justify-content: left;
   align-items: center;
   margin: 0px 35px;
-
 `;
 
 export const HeaderBg = styled.header`
@@ -52,13 +50,13 @@ export const HeaderBg = styled.header`
     max-width: 700px;
   }
 
-  h1{
+  h1 {
     margin-top: 10px;
     font-size: 28px;
     color: ${() => theme.fontColor};
   }
 
-  h2{
+  h2 {
     color: ${() => theme.lightFontColor};
     margin-bottom: 10px;
   }
@@ -66,7 +64,7 @@ export const HeaderBg = styled.header`
   @media (max-width: 1060px) {
     align-items: flex-start;
 
-    div{
+    div {
       width: auto;
     }
   }
@@ -163,4 +161,16 @@ export const CardValue = styled.span`
 
 export const CardInfo = styled.span`
   margin-top: 6px;
+`;
+
+export const ContainerFixedRight = styled.div`
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 320px;
+  height: 100vh;
+
+  @media (max-width: 785px) {
+    display: none;
+  }
 `;

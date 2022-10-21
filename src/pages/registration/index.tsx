@@ -67,7 +67,7 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
   }
 
   useEffect(() => {
-    setPositionSelected("185px")
+    setPositionSelected("245px")
     useDispatch(getUsers())
   }, [])
 
