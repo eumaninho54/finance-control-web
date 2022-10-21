@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createTransactionProps, ILastInputOutput, ICreateTransaction, IGetTransactions, getTransactionsProps } from "./interface";
+import { createTransactionProps, IInfoTransactions, ICreateTransaction, ILastTransactions, LastTransactionsProps } from "./interface";
 
 
 export class TransactionService {
@@ -9,10 +9,21 @@ export class TransactionService {
     private token: string
   ){}
   
-  async getTransactions({textFilter}: getTransactionsProps): Promise<IGetTransactions[] | null> {
-    const req = await axios.request<IGetTransactions[]>({
+  async infoTransactions(): Promise<IInfoTransactions | null> {
+    const req = await axios.request<IInfoTransactions>({
+      method: "get",
+      url: this.baseUrl + "/transactions/info",
+      headers: { "x-access-token": this.token }
+    }).then((res) => res.data)
+    .catch(() => null)
+    
+    return req
+  }
+
+  async lastTransactions({textFilter}: LastTransactionsProps): Promise<ILastTransactions[] | null> {
+    const req = await axios.request<ILastTransactions[]>({
       method: "post",
-      url: this.baseUrl + "/transactions/",
+      url: this.baseUrl + "/transactions/last",
       headers: { "x-access-token": this.token },
       data: {
         textFilter: textFilter
@@ -22,18 +33,7 @@ export class TransactionService {
 
     return req
   }
-
-  async lastInputOutput(): Promise<ILastInputOutput | null> {
-    const req = await axios.request<ILastInputOutput>({
-      method: "get",
-      url: this.baseUrl + "/transactions/last",
-      headers: { "x-access-token": this.token }
-    }).then((res) => res.data)
-      .catch(() => null)
-
-    return req
-  }
-
+  
   async createTransaction({id, reason, valueTransaction}: createTransactionProps): Promise<ICreateTransaction[] | null> {
     const req = await axios.request<ICreateTransaction[]>({
       method: "post",

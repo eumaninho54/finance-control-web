@@ -9,6 +9,8 @@ import { store } from './store'
 import { verifyToken } from './store/admin/thunks/verifyToken'
 import Loading from './components/loading'
 import { getUsers } from './store/users/thunks/getUsers'
+import { lastTransactions } from './store/transactions/thunks/lastTransactions'
+import { infoTransactions } from './store/transactions/thunks/infoTransactions'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -17,6 +19,8 @@ function App() {
     const initial = async() => {
       await store.dispatch(verifyToken())
       await store.dispatch(getUsers())
+      await store.dispatch(lastTransactions({textFilter: ''}))
+      await store.dispatch(infoTransactions())
       setIsLoading(false)
     }
     initial()

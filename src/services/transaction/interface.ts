@@ -11,7 +11,7 @@ export interface ICreateTransaction {
   transactions: any[]
 }
 
-export interface ILastInputOutput {
+export interface IInfoTransactions {
   input: {
     user: string;
     value: number;
@@ -24,7 +24,7 @@ export interface ILastInputOutput {
   }
 }
 
-export interface IGetTransactions {
+export interface ILastTransactions {
   id: number;
   name: string;
   reason: string;
@@ -32,7 +32,7 @@ export interface IGetTransactions {
   release_date: Date;
 }
 
-export interface getTransactionsProps {
+export interface LastTransactionsProps {
   textFilter: string;
 }
 

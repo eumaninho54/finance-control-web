@@ -10,7 +10,7 @@ import { useAppSelector } from './store/hooks/useAppSelector'
 
 export default () => {
   const location = useLocation()
-  const [positionSelected, setPositionSelected] = useState('125px')
+  const [positionSelected, setPositionSelected] = useState('185px')
   const admin = useAppSelector((store) => store.admin)
 
   return (

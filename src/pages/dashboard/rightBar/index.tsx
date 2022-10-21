@@ -1,22 +1,22 @@
 import { InputAdornment, TextField } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BoxText, BoxValueTransaction, CardTitle, ContentTransaction, LetterTransaction, RightBarBg, RightBarContent } from './styles';
 import SearchIcon from '@mui/icons-material/Search';
-import { TransactionService } from '../../../services/transaction';
 import { useAppSelector } from '../../../store/hooks/useAppSelector';
-import { IGetTransactions } from '../../../services/transaction/interface';
 import { currencyjs } from '../../../utils/currencyjs';
+import { lastTransactions } from '../../../store/transactions/thunks/lastTransactions';
+import { useAppDispatch } from '../../../store/hooks/useAppDispatch';
 
 
 const RightBar: React.FC = () => {
-  const admin = useAppSelector((store) => store.admin)
-  const [lastTransactions, setLastTransactions] = useState<IGetTransactions[]>([])
+  const useDispatch = useAppDispatch()
+  const transactions = useAppSelector((store) => store.transactions)
   const [filterTransactions, setFilterTransactions] = useState("")
 
   const renderBoxTransaction = () => {
-    return lastTransactions.map((transaction) => {
+    return transactions.transactions.map((transaction) => {
       return (
-        <ContentTransaction>
+        <ContentTransaction key={transaction.id}>
           <LetterTransaction>
             <div>
               <span>{transaction.name.substring(0,1).toUpperCase()}</span>
@@ -37,15 +37,7 @@ const RightBar: React.FC = () => {
   }
 
   useEffect(() => {
-    const initial = async () => {
-      const reqTransactions = await new TransactionService(admin.token).getTransactions({
-        textFilter: filterTransactions
-      })
-      reqTransactions == null
-        ? setLastTransactions([])
-        : setLastTransactions(reqTransactions)
-    }
-    initial()
+    useDispatch(lastTransactions({textFilter: filterTransactions}))
   }, [filterTransactions])
 
   return (
@@ -66,7 +58,7 @@ const RightBar: React.FC = () => {
 
         <CardTitle>Movimentações</CardTitle>
 
-        {lastTransactions[0] 
+        {transactions.transactions[0] 
           ? renderBoxTransaction()
           : null
         }

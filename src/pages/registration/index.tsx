@@ -14,6 +14,7 @@ import { useAppSelector } from '../../store/hooks/useAppSelector';
 import { getUsers } from '../../store/users/thunks/getUsers';
 import { createTransaction } from '../../store/users/thunks/createTransaction';
 import { deleteUsers } from '../../store/users/thunks/deleteUsers';
+import { infoTransactions } from '../../store/transactions/thunks/infoTransactions';
 
 
 interface RegistrationProps {
@@ -44,14 +45,15 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
     useDispatch(createUser({ name: newUsername, initialValue: newInitialValue }))
   }
 
-  const onAddTransaction = () => {
-    useDispatch(createTransaction(
+  const onAddTransaction = async() => {
+    await useDispatch(createTransaction(
       {
         id: idUser,
         reason: reason,
         valueTransaction: valueTransaction
       }
     ))
+    await useDispatch(infoTransactions())
   }
 
   const onDeleteUsers = () => {
@@ -68,7 +70,6 @@ const Registration: React.FC<RegistrationProps> = ({ setPositionSelected }) => {
 
   useEffect(() => {
     setPositionSelected("245px")
-    useDispatch(getUsers())
   }, [])
 
   return (
