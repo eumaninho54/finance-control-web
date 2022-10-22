@@ -2,10 +2,10 @@ import { InputAdornment, TextField } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import { BoxText, BoxValueTransaction, CardTitle, ContentTransaction, LetterTransaction, RightBarBg, RightBarContent } from './styles';
 import SearchIcon from '@mui/icons-material/Search';
-import { useAppSelector } from '../../../store/hooks/useAppSelector';
-import { currencyjs } from '../../../utils/currencyjs';
-import { lastTransactions } from '../../../store/transactions/thunks/lastTransactions';
-import { useAppDispatch } from '../../../store/hooks/useAppDispatch';
+import { useAppSelector } from '../../store/hooks/useAppSelector';
+import { currencyjs } from '../../utils/currencyjs';
+import { lastTransactions } from '../../store/transactions/thunks/lastTransactions';
+import { useAppDispatch } from '../../store/hooks/useAppDispatch';
 
 
 const RightBar: React.FC = () => {

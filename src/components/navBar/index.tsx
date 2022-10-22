@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Main, BackgroundNav, ContentNav, Nav, SelectedTab, SectionNav } from './styles';
 import { RiHome5Line } from 'react-icons/Ri';
 import { AiOutlineMenu } from 'react-icons/Ai';
 
 import { MdOutlineAppRegistration, MdOutlineQueryStats } from 'react-icons/Md'
-import { Button, Drawer } from '@mui/material';
-import RightBar from '../../pages/dashboard/rightBar';
+import { Drawer } from '@mui/material';
+import RightBar from '../rightBar';
 
-//SlMenu
 
 interface NavBarProps {
   children: React.ReactNode
@@ -24,7 +23,6 @@ const NavBar: React.FC<NavBarProps> = ({ children, positionSelected }) => {
     <Main>
       <BackgroundNav>
         <SelectedTab positionSelected={positionSelected} />
-
 
         <Nav>
           <SectionNav 

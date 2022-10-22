@@ -16,26 +16,27 @@ function App() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const initial = async() => {
+    const initial = async () => {
       await store.dispatch(verifyToken())
       await store.dispatch(getUsers())
-      await store.dispatch(lastTransactions({textFilter: ''}))
+      await store.dispatch(lastTransactions({ textFilter: '' }))
       await store.dispatch(infoTransactions())
       setIsLoading(false)
     }
     initial()
-  },[])
+  }, [])
 
   return (
-    isLoading == true
-    ? <Loading/>
-    : <Provider store={store}>
+    <>
+      <Loading isLoading={isLoading} />
+      <Provider store={store}>
         <ThemeProvider theme={themeUi}>
           <BrowserRouter>
             <Routes />
           </BrowserRouter>
         </ThemeProvider>
       </Provider>
+    </>
   )
 }
 

@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Background, Main, HeaderBg, InventoryBg, InventoryContent, CardDiv, InOutValue, CardTitle, CardValue, CardInfo, CardTexts, CardText, Content, ContainerFixedRight } from './styles';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import { InputAdornment, TextField } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import { useAppDispatch } from '../../store/hooks/useAppDispatch';
 import { useAppSelector } from '../../store/hooks/useAppSelector';
-import { getUsers } from '../../store/users/thunks/getUsers';
 import { currencyjs } from '../../utils/currencyjs';
-import { TransactionService } from '../../services/transaction';
-import RightBar from './rightBar';
+import RightBar from '../../components/rightBar';
 import { formatDate } from '../../utils/formatDate';
-import { infoTransactions } from '../../store/transactions/thunks/infoTransactions';
 
 interface DashboardProps {
   setPositionSelected: React.Dispatch<React.SetStateAction<string>>
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
-  const useDispatch = useAppDispatch()
   const transactions = useAppSelector((store) => store.transactions)
   const users = useAppSelector((store) => store.users)
 
@@ -52,7 +45,7 @@ const Dashboard: React.FC<DashboardProps> = ({ setPositionSelected }) => {
                   <CardValue>{totalValue()}</CardValue>
                 </CardTexts>
 
-                <Fab style={{ flexShrink: 0 }} color="secondary" size='medium' aria-label="add">
+                <Fab style={{ flexShrink: 0, zIndex: 1 }} color="secondary" size='medium' aria-label="add">
                   <AddIcon color='primary' />
                 </Fab>
               </CardDiv>
